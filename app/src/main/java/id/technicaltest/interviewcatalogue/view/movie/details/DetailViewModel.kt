@@ -39,14 +39,6 @@ class DetailViewModel(private val showUseCase: ShowUseCase) : ViewModel() {
         }
     }
 
-    private var popularReview = doubleTrigger.switchMap {
-        when (it.showType) {
-            Const.MOVIE_TYPE ->
-                showUseCase.getReviewDetail(it.showId).asLiveData()
-            else ->
-                showUseCase.getSimilarSeriesList(it.showId).asLiveData()
-        }
-    }
     //Get popular list
     //Triggered when similar list is empty
     private var popularList = listEmptyTrigger.switchMap {
@@ -88,8 +80,5 @@ class DetailViewModel(private val showUseCase: ShowUseCase) : ViewModel() {
     fun getSimilarList(): LiveData<Resource<List<Show>>> = similarList
 
     fun getPopularList(): LiveData<Resource<List<Show>>> = popularList
-
-    fun getReviewList(): LiveData<Resource<List<Review>>> = popularReview
-
 
 }

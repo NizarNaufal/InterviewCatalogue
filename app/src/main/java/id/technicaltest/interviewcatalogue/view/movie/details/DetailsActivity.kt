@@ -206,34 +206,6 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun viewModelObservePopularReview() {
-        viewModel.getReviewList().observe(this, { movieList ->
-            when (movieList) {
-                is Resource.Loading -> {
-                    startShimmerList()
-                }
-
-                is Resource.Success -> {
-                    val data = movieList.data
-                    if (data.isNullOrEmpty()) {
-                        binding.tvDetailInterestTitle.visibility = View.GONE
-                        showToast(getString(R.string.no_popular_list_found))
-                    } else {
-                        similarShowsAdapter.setShimmer(viewModel.getIsAlreadyShimmer())
-                        similarShowsAdapter.setList(data as ArrayList<Review>)
-                        stopShimmerList()
-                    }
-                }
-
-                is Resource.Error -> {
-                    showToast(getString(R.string.list_failed_to_load))
-                    showSnackBar(movieList.message) //Show snackbar for retry load data
-                    stopShimmerList()
-                }
-            }
-        })
-    }
-
     private fun showSnackBar(message: String?) {
         val safeMessage = message ?: getString(R.string.unknown_error)
         Snackbar.make(binding.root, safeMessage, Snackbar.LENGTH_INDEFINITE)
