@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/navigation_movie">
+
+    <fragment
+        android:id="@+id/navigation_movie"
+        android:name="id.technicaltest.interviewcatalogue.view.movie.MovieFragment"
+        tools:layout="@layout/fragment_movie" />
+
+    <fragment
+        android:id="@+id/navigation_series"
+        android:name="id.technicaltest.interviewcatalogue.view.movie.series.SeriesFragment"
+        tools:layout="@layout/fragment_series" />
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="id.technicaltest.favorite.favorite.FavoriteFragment"
+        app:moduleName="favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+</navigation>
